@@ -1,0 +1,8 @@
+bison -dv parser.y
+g++ -std=c++11 -c -g parser.tab.c
+flex lexer.lex
+g++ -std=c++11 -c -g lex.yy.c
+g++ -std=c++11 -c -g main.cpp
+g++ -std=c++11 -c -g error.cpp
+g++ -std=c++11 -c -g compiler.cpp
+g++ -o compiler error.o compiler.o parser.tab.o lex.yy.o main.o
