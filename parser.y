@@ -154,6 +154,8 @@ subprogram_declaration: subprogram_head
                   }
                   arguments ';'
                   {
+                      if (isArray == true)
+                        isArray = false;
                       setParametersAdress();
                   }
                   ;

@@ -439,11 +439,12 @@ std::string reverse(std::string relop) {
 
 void assign(int index1, int index2, int idx)
 {
+    std::cout<<output;
     if (idx != -1) {
         addSymbol(getNewTmpName(), intType);
         setAdress();
         std::string adr1 = symbolTable.back().adress;
-        output += "\tsub.i #" + std::to_string(idx) + ", #1, " + adr1 + "\n";
+        output += "\tsub.i #" + symbolTable.at(idx).value + ", #1, " + adr1 + "\n";
         output += "\tmul.i " + adr1 + ", #4, " + adr1 + "\n";
         addSymbol(getNewTmpName(), intType);
         setAdress();
@@ -451,7 +452,7 @@ void assign(int index1, int index2, int idx)
         if (adr2[0] == '*') adr2.erase(0, 1);
         else adr2 = "#" + adr2;
         output += "\tadd.i " + adr2 + ", " + adr1 + ", " + symbolTable.back().adress + "\n";
-        output += "\tmov.i #" + std::to_string(index1) + ", *" + symbolTable.back().adress + "\n";
+        output += "\tmov.i #" + symbolTable.at(index1).value + ", *" + symbolTable.back().adress + "\n";
         return;
     }
     checkIndex(index1);
